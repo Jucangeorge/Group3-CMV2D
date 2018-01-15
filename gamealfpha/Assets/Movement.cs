@@ -21,11 +21,13 @@ public class Movement : MonoBehaviour {
 
         float horizontal = Input.GetAxis("Horizontal");
         myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
-      //  transform.Translate(Time.deltaTime * (speed * horizontal), 0, 0);
+       transform.Translate(Time.deltaTime * (speed * horizontal), 0, 0);
         if(myRigidbody.velocity.y==0)
         {
-            myRigidbody.velocity = new Vector2(speed * horizontal, 0);
+
+          // myRigidbody.velocity = new Vector2(speed * horizontal, 0);
         }
+        
 
         if(myRigidbody.velocity.y<0)
         {
@@ -34,7 +36,9 @@ public class Movement : MonoBehaviour {
         }
         else
         {
+            Debug.Log("yes");
             myAnimator.SetBool("land", false);
+           // myRigidbody.velocity = new Vector2(speed * horizontal, 0);
         }
 
         Flip(horizontal);
@@ -42,7 +46,7 @@ public class Movement : MonoBehaviour {
     }
     void Flip(float horizontal)
     {
-        if (horizontal > 0 && !facingRight && myRigidbody.velocity.y == 0 || horizontal < 0 && facingRight&& myRigidbody.velocity.y == 0)
+        if (horizontal > 0 && !facingRight /*&& myRigidbody.velocity.y == 0*/ || horizontal < 0 && facingRight /*&& myRigidbody.velocity.y == 0*/)
         {
             facingRight = !facingRight;
             SpriteRenderer flipX = GetComponent<SpriteRenderer>();
