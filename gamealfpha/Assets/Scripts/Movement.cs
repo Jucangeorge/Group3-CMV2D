@@ -10,8 +10,12 @@ public class Movement : MonoBehaviour {
     public float speed = 10;
     private bool facingRight = true;
     public float jumpForce;
-	// Use this for initialization
-	void Start () {
+    public int health = 10;
+    public Collider2D myPlayerCollider;
+    public Collider2D myEnemyCollider;
+
+    // Use this for initialization
+    void Start () {
         myAnimator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody2D>();
 	}
@@ -21,11 +25,15 @@ public class Movement : MonoBehaviour {
 
         float horizontal = Input.GetAxis("Horizontal");
         myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
-      //  transform.Translate(Time.deltaTime * (speed * horizontal), 0, 0);
+       transform.Translate(Time.deltaTime * (speed * horizontal), 0, 0);
+
+        //TO BE CHECKED
         if(myRigidbody.velocity.y==0)
         {
-            myRigidbody.velocity = new Vector2(speed * horizontal, 0);
+
+          // myRigidbody.velocity = new Vector2(speed * horizontal, 0);
         }
+        
 
         if(myRigidbody.velocity.y<0)
         {
@@ -33,7 +41,7 @@ public class Movement : MonoBehaviour {
             myAnimator.ResetTrigger("jump");
         }
         else
-        {
+        {  
             myAnimator.SetBool("land", false);
         }
 
@@ -41,8 +49,9 @@ public class Movement : MonoBehaviour {
         _Input();
     }
     void Flip(float horizontal)
-    {
-        if (horizontal > 0 && !facingRight && myRigidbody.velocity.y == 0 || horizontal < 0 && facingRight&& myRigidbody.velocity.y == 0)
+    {   
+        // if we want the characher not to move while in air delete the /* */  and change the movement from transform.translate to myrigidbody.velocity;
+        if (horizontal > 0 && !facingRight /*&& myRigidbody.velocity.y == 0*/ || horizontal < 0 && facingRight /*&& myRigidbody.velocity.y == 0*/)
         {
             facingRight = !facingRight;
             SpriteRenderer flipX = GetComponent<SpriteRenderer>();
@@ -61,4 +70,23 @@ public class Movement : MonoBehaviour {
         myRigidbody.AddForce(new Vector2(0, jumpForce));
         myAnimator.SetTrigger("jump");
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+        if(collision.collider.tag== "Enemy")
+        {
+            health -= 1;
+
+            if(health < 1)
+            {
+                Debug.Log("DEAD!");
+            }
+        }
+
+      
+    }
+
+   
 }
+ 
