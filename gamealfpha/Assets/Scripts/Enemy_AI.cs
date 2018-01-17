@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class Enemy_AI : MonoBehaviour {
     Rigidbody2D myRigidbody;
-    public int EnemySpeed;
-    public int moveDirection;
+    public int EnemySpeed; //set to private, its public to debug;
+    public int moveDirection; // set to private, its public to debug;
     private bool facingRight = true;
-    public Collider2D myPlayerCollider;
-    public Collider2D myEnemyCollider;
-    public Movement Myplayer;
-    public int health;
+    public int health;//not used for now might be used if the enemy have more than 1 life
     
     void Start () {
         
@@ -27,11 +24,6 @@ public class Enemy_AI : MonoBehaviour {
         //draw raycast
         Debug.DrawRay(((Vector2)transform.position) + new Vector2(2f*moveDirection, 0), new Vector2(0, -1));
 
-        //enemy attack to be detailed
-        if(myEnemyCollider.IsTouching(myPlayerCollider))
-        {
-            Debug.Log("enemyhit");
-        }
 
         //movement
         myRigidbody.velocity = new Vector2(moveDirection, 0) * EnemySpeed;
@@ -45,13 +37,13 @@ public class Enemy_AI : MonoBehaviour {
         if(hit.distance==0)
         {
             Debug.Log("hit.distance==0");
-        }
+        } //if there is an object 1.2 units in front of it will change direction
         else if (hit.distance < 1.2f)
         {
             Flip();
         }     
     }
-
+    // filp or change direction, you flip the sprite so therefore the name
     void Flip()
     {
         if (moveDirection>0)

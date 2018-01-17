@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public class Movement : MonoBehaviour {
 
     Animator myAnimator;
@@ -10,9 +10,7 @@ public class Movement : MonoBehaviour {
     public float speed = 10;
     private bool facingRight = true;
     public float jumpForce;
-    public int health = 10;
-    public Collider2D myPlayerCollider;
-    public Collider2D myEnemyCollider;
+    public int health = 100;
 
     // Use this for initialization
     void Start () {
@@ -22,20 +20,14 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
         float horizontal = Input.GetAxis("Horizontal");
         myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
        transform.Translate(Time.deltaTime * (speed * horizontal), 0, 0);
 
-        //TO BE CHECKED
-        if(myRigidbody.velocity.y==0)
-        {
 
-          // myRigidbody.velocity = new Vector2(speed * horizontal, 0);
-        }
-        
-
-        if(myRigidbody.velocity.y<0)
+        if (myRigidbody.velocity.y<0)
         {
             myAnimator.SetBool("land", true);
             myAnimator.ResetTrigger("jump");
