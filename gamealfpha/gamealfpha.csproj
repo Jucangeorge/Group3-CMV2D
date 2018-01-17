@@ -90,6 +90,7 @@
     <Compile Include="Assets\Scripts\CraftingSystemScript.cs" />
     <Compile Include="Assets\Scripts\Enemy_AI.cs" />
     <Compile Include="Assets\Scripts\FollowingCamera.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\InventorySlot.cs" />
     <Compile Include="Assets\Scripts\InventoryUI.cs" />
@@ -98,6 +99,10 @@
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\PanelScript.cs" />
     <Compile Include="Assets\Scripts\Teleport.cs" />
+=======
+    <Compile Include="Assets\Scripts\InventoryUI.cs" />
+    <Compile Include="Assets\Scripts\Movement.cs" />
+>>>>>>> ae021513158b4fd88193d600ff3e4b7ab34d9c09
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

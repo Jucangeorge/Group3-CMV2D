@@ -44,7 +44,11 @@ public class CraftingSystemScript : MonoBehaviour
             if (Craftslots[i].text != "")
             {
                 CurrentCraftID += Craftslots[i].text;
+<<<<<<< HEAD
                 CraftslotsIMG[i].sprite = items[int.Parse(Craftslots[i].text)].icon; 
+=======
+                CraftslotsIMG[i].sprite = items[int.Parse(Craftslots[i].text)].img;
+>>>>>>> ae021513158b4fd88193d600ff3e4b7ab34d9c09
 
             }
             else
@@ -65,7 +69,11 @@ public class CraftingSystemScript : MonoBehaviour
             {
                 currentID = CraftableItems[i].itemID;
                 i = CraftableItems.Count;
+<<<<<<< HEAD
                 Result.sprite = items[currentID].icon;
+=======
+                Result.sprite = items[currentID].img;
+>>>>>>> ae021513158b4fd88193d600ff3e4b7ab34d9c09
 
             }
             else
@@ -76,8 +84,19 @@ public class CraftingSystemScript : MonoBehaviour
         }
     }
 }
+<<<<<<< HEAD
 
 
+=======
+[System.Serializable]
+public class Item
+{
+
+    public string name;
+    public Sprite img;
+
+}
+>>>>>>> ae021513158b4fd88193d600ff3e4b7ab34d9c09
 
 [System.Serializable]
 public class CraftableItem
